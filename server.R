@@ -17,7 +17,7 @@ shinyServer(function(input, output) {
                         run_bar$chart(margin = list(left = 90, bottom = 120))
                         run_bar$xAxis(rotateLabels=-90, axisLabel = "Filter")
                         run_bar$yAxis( axisLabel = "Count of filter runs")
-                        run_bar
+                        return(run_bar)
               })
               
               #prep data for mttf plot
@@ -41,7 +41,7 @@ shinyServer(function(input, output) {
     }!#")
                   mtbfplot$xAxis(rotateLabels=-90, axisLabel = "Filter")
                   mtbfplot$yAxis( axisLabel = "Mean time between failures (days)")
-                  mtbfplot
+                  return(mtbfplot)
               })
               
               
@@ -315,7 +315,7 @@ shinyServer(function(input, output) {
                   causeplot$chart(margin = list(left = 90, bottom = 200), color = likely_cause()$colour)
                   causeplot$xAxis(rotateLabels=-90, axisLabel = "Potential cause")
                   causeplot$yAxis( axisLabel = "Score")
-                  causeplot
+                  return(causeplot)
               })
               
               
