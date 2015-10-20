@@ -51,7 +51,7 @@ shinyUI(fluidPage(
                                                         showOutput("run_bar_plot","Nvd3"),
                                                         h4("This plot shows the counts, by filter over the priod selected, of filter runs with acceptable and unacceptable levels of turbidity. Unacceptable runs have a 99th percentile turbidity greater than 0.1 NTU or have a mean turbidity that is significantly different to the mean over the whole period."),
                                                         h1("Mean time between failures"),
-                                                        showOutput("mtbf_plt","Nvd3")
+                                                        showOutput("mtbf_plt","nvd3")
                                                ),
                                                tabPanel("Dominant failure types",
                                                         h1("Breakdown of failure types"),
@@ -93,7 +93,7 @@ shinyUI(fluidPage(
 #                                                          h1("Contingency table from RF prediction"),
 #                                                          tableOutput("rf_cont"),
                                                          h1("Suggested dominant causes of run failure over period"),
-                                                         showOutput("cause_plot", "Nvd3")
+                                                         showOutput("cause_plot", "nvd3")
                                                 ),
                                                tabPanel("Data table",
                                                         h1("Data viewer"),
