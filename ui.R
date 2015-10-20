@@ -48,7 +48,7 @@ shinyUI(fluidPage(
                                   tabsetPanel( id = 'view',
                                                tabPanel("Run acceptability by filter",
                                                         h1("High turbidity runs by filter"),
-                                                        showOutput("run_bar_plot","Nvd3"),
+                                                        showOutput("run_bar_plot","nvd3"),
                                                         h4("This plot shows the counts, by filter over the priod selected, of filter runs with acceptable and unacceptable levels of turbidity. Unacceptable runs have a 99th percentile turbidity greater than 0.1 NTU or have a mean turbidity that is significantly different to the mean over the whole period."),
                                                         h1("Mean time between failures"),
                                                         showOutput("mtbf_plt","nvd3")
