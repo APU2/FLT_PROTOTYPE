@@ -50,16 +50,16 @@ shinyUI(fluidPage(
                                                         h1("High turbidity runs by filter"),
                                                         showOutput("run_bar_plot","nvd3"),
                                                         h4("This plot shows the counts, by filter over the priod selected, of filter runs with acceptable and unacceptable levels of turbidity. Unacceptable runs have a 99th percentile turbidity greater than 0.1 NTU or have a mean turbidity that is significantly different to the mean over the whole period."),
-                                                        h1("Mean time between failures"),
+                                                        h1("Mean time between events"),
                                                         showOutput("mtbf_plt","nvd3")
                                                ),
-                                               tabPanel("Dominant failure types",
-                                                        h1("Breakdown of failure types"),
+                                               tabPanel("Dominant event types",
+                                                        h1("Breakdown of event types"),
                                                         htmlOutput("sanky"),
                                                         h4("This sankey plot shows us some context about the runs identified as having unacceptable turbidity within the period specified. These unacceptable filter runs are arranged on the basis of some contextual data. Width of connections is relative to the number of failing runs within a given context. On the left failing runs are split into those which have the highest turbidity at different stages of the run. Filters with high turbidiy early in the run are more likely to have exhibited poor ripening or an innefective filter to waste or slow start procedure. Filters with high turbidity at the end of the run are exhibiting breakthrough which can occur for a number of reasons. Filter runs exhibiting the higest turbidity during the middle of the run may indicate subject to some process shock. In the middle the filter is identified. On the right the performance of other filters within the WTW is indicated. Issues which affect only one filter are more likely to indicate a filter in poor condition for some reason. Where other filters exhibit issues at the same time an upstream issue is likely to be a more dominant cause of the poorer performance. Performance issues confied within a single stream can allow focus of further investigations. ")
                                                ),
                                                tabPanel("High turbidity runs over time",
-                                                        h1("Breakdown of run quality failures by over time"),
+                                                        h1("Breakdown of run quality events by over time"),
                                                         htmlOutput("Timeline"),
                                                         h4("This timeline plot identifies runs with unacceptable turbidiy over the period of interest. The colour indicates the period of the run with the highest turbididy. As such a long term overview of treatment performance can be gained. Periods of treatment challenge can be easily identified and investigated further. ")
                                                ),
@@ -82,17 +82,17 @@ shinyUI(fluidPage(
     #                                                     plotOutput("sig_whisker")
     #                                            ),
 #                                                tabPanel("Classification tree",
-#                                                         h1("Classification tree for filter failure"),
+#                                                         h1("Classification tree for filter event"),
 #                                                         plotOutput("class_tree")
 #                                                ),
                                                 tabPanel("Diagnosis",
 #                                                          h1("Plot of random forest"),
 #                                                          plotOutput("rf_plot"),
-#                                                          h1("Variable importance for failure prediction"),
+#                                                          h1("Variable importance for event prediction"),
 #                                                          plotOutput("var_imp"),
 #                                                          h1("Contingency table from RF prediction"),
 #                                                          tableOutput("rf_cont"),
-                                                         h1("Suggested dominant causes of run failure over period"),
+                                                         h1("Suggested dominant causes of run event over period"),
                                                          showOutput("cause_plot", "nvd3")
                                                 ),
                                                tabPanel("Data table",
