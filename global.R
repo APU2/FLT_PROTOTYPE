@@ -30,6 +30,7 @@ library(dygraphs)
 library(rpart.plot)
 library(randomForest)
 library(party)
+library(e1071)
 
 
 #read data
