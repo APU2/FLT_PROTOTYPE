@@ -279,7 +279,7 @@ shinyServer(function(input, output) {
               # create contingency table for rf predictions
               
               rf_cont<- reactive({
-                  cont_tab<- confusionMatrix(data =  rf_test(), reference = test_df()$RUN_FAIL)
+                  cont_tab<- confusionMatrix(data =  rf_test(), reference = test_df()$RUN_FAIL, positive = 1)
                   return(cont_tab)
               })
               
