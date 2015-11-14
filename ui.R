@@ -27,19 +27,19 @@ shinyUI(fluidPage(
                                                                       label = "Select signal to plot",
                                                                       choices = levels(RUNSTATS_MEL$variable))
                                                          
-                                               ),
-                                               tabPanel(
-                                                         title = "Model parameter selection",
-                                                         value = "sig_tab_sel_mod",
-                                                         checkboxGroupInput("sel_sig_id_mod", 
-                                                                      label = "Select signals to include in model",
-                                                                      choices = colnames(RUNSTATS)[-c(grep("FAIL",colnames(RUNSTATS)),
-                                                                                                             grep("TURB_MEAN",colnames(RUNSTATS)),
-                                                                                                             grep("T95",colnames(RUNSTATS)),
-                                                                                                             grep("T99",colnames(RUNSTATS)))],
-                                                                      selected = colnames(RUNSTATS)[c(15:20)])
-                                                         
-                                               )
+                                               )#,
+#                                                tabPanel(
+#                                                          title = "Model parameter selection",
+#                                                          value = "sig_tab_sel_mod",
+#                                                          checkboxGroupInput("sel_sig_id_mod", 
+#                                                                       label = "Select signals to include in model",
+#                                                                       choices = colnames(RUNSTATS)[-c(grep("FAIL",colnames(RUNSTATS)),
+#                                                                                                              grep("TURB_MEAN",colnames(RUNSTATS)),
+#                                                                                                              grep("T95",colnames(RUNSTATS)),
+#                                                                                                              grep("T99",colnames(RUNSTATS)))],
+#                                                                       selected = colnames(RUNSTATS)[c(15:20)])
+#                                                          
+#                                                )
                                   )
                                   
                                   
@@ -63,10 +63,10 @@ shinyUI(fluidPage(
                                                         htmlOutput("Timeline"),
                                                         h4("This timeline plot identifies runs with unacceptable turbidiy over the period of interest. The colour indicates the period of the run with the highest turbididy. As such a long term overview of treatment performance can be gained. Periods of treatment challenge can be easily identified and investigated further. ")
                                                ),
-                                               tabPanel("Comparison of filters",
-                                                        h1("Comparison between filters"),
-                                                        plotOutput("boxplot")
-                                               ),
+#                                                tabPanel("Comparison of filters",
+#                                                         h1("Comparison between filters"),
+#                                                         plotOutput("boxplot")
+#                                                ),
                                                tabPanel("Signal trend",
                                                         h1("Signals aggregated by filter run"),
                                                         dygraphOutput("dygraph_trend"),
@@ -93,11 +93,14 @@ shinyUI(fluidPage(
 #                                                          h1("Contingency table from RF prediction"),
 #                                                          tableOutput("rf_cont"),
                                                          h1("Suggested dominant causes of run event over period"),
-                                                         showOutput("cause_plot", "nvd3")
+                                                         showOutput("cause_plot", "nvd3"),
+                                                         h2("Model performance"),                  
+                                                         verbatimTextOutput(outputId="table_conf")
                                                 ),
                                                tabPanel("Data table",
                                                         h1("Data viewer"),
-                                                        dataTableOutput(outputId="table_runstats")
+                                                        dataTableOutput(outputId="table_runstats"),
+                                                        textOutput("text1")
                                                )
                                                )
                         )

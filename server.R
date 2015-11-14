@@ -144,7 +144,7 @@ shinyServer(function(input, output) {
               # plot dygraphs cusum trend plot
               
               output$dygraph_trend_cusum <- renderDygraph({
-                        dygraph(trend_zoos_cusum_df(), main = "Aggregated signal trends") %>%
+                        dygraph(trend_zoos_cusum_df(), main = print(input$sel_sig_id)) %>%
                                   dyOptions(drawPoints = TRUE, pointSize = 2, strokeWidth = 0)%>%
                                   dyRangeSelector(height = 20)
               })
@@ -195,22 +195,22 @@ shinyServer(function(input, output) {
                   #TRY_FILTER[,MONTH:= factor(month(STRT))]
                   TRY_FILTER[,STRT:=NULL]
                   TRY_FILTER[,END:=NULL]
-                  TRY_FILTER[,TURB_MEAN:=NULL]
-                  TRY_FILTER[,T95:=NULL]
+                  #TRY_FILTER[,TURB_MEAN:=NULL]
+                  #TRY_FILTER[,T95:=NULL]
                   TRY_FILTER[,T99:=NULL]
                   TRY_FILTER[,RUN:=NULL]
                   TRY_FILTER[,TERM_HL_NORM:=NULL]
                   TRY_FILTER[,TURB_LOAD:=NULL]
                   #TRY_FILTER[,SPECIFIC_HL:=NULL]
-                  TRY_FILTER[,HIGH_LIMIT:=NULL]
-                  TRY_FILTER[,RIPEN_MAX:=NULL]
+                  #TRY_FILTER[,HIGH_LIMIT:=NULL]
+                  #TRY_FILTER[,RIPEN_MAX:=NULL]
                   #TRY_FILTER[,MAX_TURB_FLOW:=NULL]
-                  TRY_FILTER[,TURB_HIGH_RATE:=NULL]
+                  #TRY_FILTER[,TURB_HIGH_RATE:=NULL]
                   TRY_FILTER[,RIPEN_HIGH:=NULL]
-                  TRY_FILTER[,TURB_DIFF:=NULL]
+                  #TRY_FILTER[,TURB_DIFF:=NULL]
                   TRY_FILTER[,MAX_TURB_TIME:=NULL]
-                  TRY_FILTER[,STREAM_TURB_SD:=NULL]
-                  TRY_FILTER[,STREAM_TURB_MEAN:=NULL]
+                  #TRY_FILTER[,STREAM_TURB_SD:=NULL]
+                  #TRY_FILTER[,STREAM_TURB_MEAN:=NULL]
                   TRY_FILTER[,FAILTYPEA:=NULL]
                   TRY_FILTER[,HIGH_PERIOD:=NULL]
                   TRY_FILTER[,FILTERS_IMPACTED:=NULL]
@@ -278,8 +278,8 @@ shinyServer(function(input, output) {
 
               # create contingency table for rf predictions
               
-              output$rf_cont<- renderTable({
-                  cont_tab<- table(test_df()$RUN_FAIL, rf_test())
+              rf_cont<- reactive({
+                  cont_tab<- confusionMatrix(data =  rf_test(), reference = test_df()$RUN_FAIL)
                   return(cont_tab)
               })
               
@@ -301,7 +301,7 @@ shinyServer(function(input, output) {
                   diag_tab<- ddply(INF_TAB, .(variable),mutate,
                                    score = value * var_import()[match(VARIABLE, row.names(var_import())), "MeanDecreaseGini"])
                   diag_tab<-ddply(diag_tab, .(variable), summarise,
-                                  score = mean(score))
+                                  score = mean(score, na.rm = TRUE))
                   diag_tab<- diag_tab[order(diag_tab$score, decreasing = TRUE),]
                   diag_tab$cause<- FAULT_LAB[match(diag_tab$variable, FAULT_LAB$VARIABLE),"label"]
                   diag_tab$colour<- FAULT_LAB[match(diag_tab$variable, FAULT_LAB$VARIABLE),"colour"]
@@ -321,6 +321,11 @@ shinyServer(function(input, output) {
               
               # output data table
               
+              output$table_conf <- renderPrint({ rf_cont()})
               output$table_runstats <- renderDataTable({ likely_cause()})
+              output$text1 <- renderText({ 
+                  paste("You have selected", input$sel_sig_id)
+              })
 })
+
 
