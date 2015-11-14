@@ -33,8 +33,8 @@ library(party)
 
 
 #read data
-#RUNSTATS<-data.table(read.csv("DATA/RUNSTATS.csv")[,-1])
-RUNSTATS<-data.table(read.csv("C:/Users/andrew/Dropbox/EXPERT SYSTEM/WQTC/WQTC_SLIDIFY/WQTC2015/DATA/RUNSTATS.csv")[,-1])
+RUNSTATS<-data.table(read.csv("DATA/RUNSTATS.csv")[,-1])
+#RUNSTATS<-data.table(read.csv("C:/Users/andrew/Dropbox/EXPERT SYSTEM/WQTC/WQTC_SLIDIFY/WQTC2015/DATA/RUNSTATS.csv")[,-1])
 #format run data
 
 RUNSTATS[,STRT:=ymd_hms(STRT)]
@@ -114,9 +114,9 @@ FAILURES<- RUNSTATS[RUNSTATS$RUN_FAIL == 1]
 
 # rad inference tab
 
-#INF_TAB<- read.csv("DATA/INFERENCE_TAB.csv")
-INF_TAB<- read.csv("C:\\Users\\andrew\\Dropbox\\EXPERT SYSTEM\\WQTC\\WQTC_SLIDIFY\\WQTC2015\\DATA/INFERENCE_TAB.csv")
+INF_TAB<- read.csv("DATA/INFERENCE_TAB.csv")
+#INF_TAB<- read.csv("C:\\Users\\andrew\\Dropbox\\EXPERT SYSTEM\\WQTC\\WQTC_SLIDIFY\\WQTC2015\\DATA/INFERENCE_TAB.csv")
 INF_TAB<- melt(INF_TAB, id=1)
 
-#FAULT_LAB<- read.csv("DATA/FAULT_LABS.csv", stringsAsFactors = FALSE)
-FAULT_LAB<- read.csv("C:\\Users\\andrew\\Dropbox\\EXPERT SYSTEM\\WQTC\\WQTC_SLIDIFY\\WQTC2015\\DATA\\FAULT_LABS.csv", stringsAsFactors = FALSE)
+FAULT_LAB<- read.csv("DATA/FAULT_LABS.csv", stringsAsFactors = FALSE)
+#FAULT_LAB<- read.csv("C:\\Users\\andrew\\Dropbox\\EXPERT SYSTEM\\WQTC\\WQTC_SLIDIFY\\WQTC2015\\DATA\\FAULT_LABS.csv", stringsAsFactors = FALSE)
